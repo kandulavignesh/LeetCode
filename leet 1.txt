@@ -1,0 +1,63 @@
+1.Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+
+You can return the answer in any order.
+
+**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+var twoSum = function(nums, target) {
+    const numIndexMap = {};
+
+    for (let i = 0; i < nums.length; i++) {
+        const complement = target - nums[i];
+
+        if (numIndexMap.hasOwnProperty(complement)) {
+            return [numIndexMap[complement], i];
+        }
+
+        numIndexMap[nums[i]] = i;
+    }
+
+    return [];
+};
+
+
+2. You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.
+
+You may assume the two numbers do not contain any leading zero, except the number 0 itself.
+
+
+class List:
+    def __init__(self, value=0, next=None):
+        self.value = value
+        self.next = next
+
+def addTwoNumbers(l1, l2):
+    dummy = ListNode()
+    current = dummy
+    carry = 0
+
+    while l1 or l2 or carry:
+    
+        x = l1.value if l1 else 0
+        y = l2.value if l2 else 0
+
+
+        _sum = x + y + carry
+        carry = _sum // 10
+
+
+        current.next = List(_sum % 10)
+        current = current.next
+
+
+        if l1:
+            l1 = l1.next
+        if l2:
+            l2 = l2.next
+
+    return dummy.next
