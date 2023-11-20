@@ -1,0 +1,85 @@
+1. Given a string s, return the longest palindromic substring in s;
+
+import java.util.*;
+
+public class longest_palindromic_subString {
+	static boolean palindrome(String s) {
+		String t="";
+		for(int i=s.length()-1;i>=0;i--) {
+			t=t+s.charAt(i);
+		}
+		if(t.equals(s)) {
+			return true;
+		}
+		return false;
+	}
+	static void subString(String s) {
+		for(int size=s.length();size>=1;size--) {
+			for(int i=0;i<=s.length()-size;i++) {
+				String t="";
+				for(int j=i;j<i+size;j++) {
+					t=t+s.charAt(j);
+				}
+				if(palindrome(t)) {
+					System.out.println(t);
+					return;
+				}
+			}
+		}
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc=new Scanner(System.in);
+		String s=sc.next();
+		subString(s);
+	}
+
+}
+
+2. No of pairs
+
+package prractice_programs;
+import java.util.LinkedHashMap;
+import java.util.Map.Entry;
+import java.util.Scanner;
+import java.util.Set;
+
+
+public class pairs {
+	static void pairs_count(int a[]) {
+		LinkedHashMap<Integer,Integer>map=new LinkedHashMap<Integer,Integer>();
+		for(int i=0;i<a.length;i++) {
+			int c=a[i];
+			if(map.containsKey(c)) {
+				int f=map.get(c);
+				map.put(c, f+1);
+			}
+			else {
+				map.put(c, 1);
+			}
+		}
+		//Set<Entry<Integer,Integer>>e=map.entrySet();
+		Set<Entry<Integer,Integer>>e=map.entrySet();
+		int count=0;
+		for(Entry<Integer,Integer>entrySet:e) {
+			int d=entrySet.getValue();
+			count=count+d/2;
+		}
+		System.out.println(count);
+		
+			
+	}
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int a[] = new int[n];
+		for (int i = 0; i < n; i++) {
+			a[i] = sc.nextInt();
+		}
+		pairs_count(a);
+		// TODO Auto-generated method stub
+
+	}
+
+}
