@@ -1,0 +1,50 @@
+1. You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.
+
+
+class Solution {
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode dummyHead = new ListNode(0);
+        ListNode tail = dummyHead;
+        int carry = 0;
+
+        while(l1 != null || l2 != null || carry != 0)
+        {
+            int digit1 = (l1 != null) ? l1.val : 0;
+            int digit2 = (l2 != null) ? l2.val : 0;
+            int sum = digit1+digit2+carry;
+            int digit = sum % 10;
+            carry = sum/10;
+
+            ListNode newnode = new ListNode(digit);
+            tail.next = newnode;
+            tail = tail.next;
+
+            l1 = (l1 != null) ? l1.next : null;
+            l2 = (l2 != null) ? l2.next : null;
+        }
+        ListNode result = dummyHead.next;
+        dummyHead = null;
+        return result;
+    }
+}
+
+2. MEdian of numbers...
+
+
+class Solution(object):
+    def findMedianSortedArrays(self, nums1, nums2):
+        merged=sorted(nums1+nums2)
+        total_len=len(merged)
+
+        if total_len%2==0:
+            mid1=merged[total_len//2]
+            mid2=merged[total_len//2-1]
+            median=(mid1+mid2)/2.0
+        else:
+            median=merged[total_len//2]
+
+        return median
+nums1=[1,3]
+nums2=[2]
+median=Solution().findMedianSortedArrays(nums1,nums2)
+print(median)
